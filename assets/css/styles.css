@@ -1,0 +1,116 @@
+/* assets/css/styles.css */
+:root {
+    --primary-gradient: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    --secondary-gradient: linear-gradient(135deg, #858796 0%, #60616f 100%);
+    --surface-color: #ffffff;
+    --bg-color: #f8f9fc;
+    --text-primary: #5a5c69;
+    --text-heading: #4e73df;
+    --shadow-sm: 0 .125rem .25rem 0 rgba(58,59,69,.2)!important;
+    --shadow-lg: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    --radius-card: 1rem;      /* 16px */
+    --radius-btn: 50rem;      /* Pill shape */
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Tipografía --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #4e73df; /* Azul institucional moderno */
+    font-weight: 700;
+}
+
+/* --- Cards (Tarjetas) --- */
+.card {
+    border: none;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--surface-color);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid #e3e6f0;
+    font-weight: bold;
+    color: #4e73df;
+    padding: 1rem 1.5rem;
+}
+
+/* --- Botones --- */
+.btn {
+    border-radius: var(--radius-btn);
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    box-shadow: 0 4px 6px rgba(78, 115, 223, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #224abe 0%, #4e73df 100%);
+    transform: scale(1.02);
+}
+
+/* --- Navbar Personalizado --- */
+.navbar-custom {
+    background: var(--primary-gradient);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-custom .navbar-brand {
+    color: white !important;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-custom .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #fff !important;
+}
+
+/* --- Tablas --- */
+.table-custom thead th {
+    background-color: #4e73df;
+    color: white;
+    border: none;
+}
+.table-custom tbody tr:hover {
+    background-color: #f1f4f9;
+}
+
+/* --- Utilidades --- */
+.text-gradient {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main-content {
+    flex: 1; /* Empuja el footer hacia abajo */
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
