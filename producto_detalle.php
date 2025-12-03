@@ -114,7 +114,7 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 
     <div class="row mt-5 g-4">
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="seccion-opiniones">
             <div class="card border-0 shadow-sm rounded-4 h-100">
                 <div class="card-header bg-white py-3 border-0"><h5 class="fw-bold mb-0 text-primary">Preguntas</h5></div>
                 <div class="card-body">

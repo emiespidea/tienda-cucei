@@ -9,13 +9,12 @@ if (!is_logged_in()) {
 
 $user_id = $_SESSION['user_id'];
 
-// 1. Obtener datos frescos del usuario (por si cambió algo en la BD)
+// 1. Obtener datos frescos del usuario
 $stmt_user = $pdo->prepare("SELECT * FROM clientes WHERE id = :id");
 $stmt_user->execute(['id' => $user_id]);
 $user = $stmt_user->fetch();
 
 // 2. Obtener historial de pedidos con totales calculados
-// Usamos LEFT JOIN para sumar los productos de cada pedido
 $sql_pedidos = "SELECT p.id, p.fecha, p.status, p.metodo_pago,
                        COALESCE(SUM(pp.cantidad * pp.precio), 0) as total
                 FROM pedidos p
@@ -31,6 +30,7 @@ $pedidos = $stmt_pedidos->fetchAll();
 
 <div class="row g-4">
     
+    <!-- TARJETA DE PERFIL -->
     <div class="col-lg-4">
         <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
             <div class="mb-4 mt-2">
@@ -58,6 +58,7 @@ $pedidos = $stmt_pedidos->fetchAll();
         </div>
     </div>
 
+    <!-- TABLA DE PEDIDOS -->
     <div class="col-lg-8">
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
             <div class="card-header bg-white border-bottom border-light py-3 d-flex justify-content-between align-items-center">
@@ -74,12 +75,13 @@ $pedidos = $stmt_pedidos->fetchAll();
                             <th>Método</th>
                             <th>Total</th>
                             <th>Estado</th>
+                            <th></th> <!-- Columna vacía para el botón -->
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($pedidos)): ?>
                             <tr>
-                                <td colspan="5" class="text-center py-5 text-muted">
+                                <td colspan="6" class="text-center py-5 text-muted">
                                     <div class="mb-3 opacity-25">
                                         <i class="fas fa-box-open fa-3x"></i>
                                     </div>
@@ -91,7 +93,6 @@ $pedidos = $stmt_pedidos->fetchAll();
                             </tr>
                         <?php else: ?>
                             <?php foreach ($pedidos as $ped): 
-                                // Lógica visual de estados con 'match' (PHP 8+)
                                 $estado_badge = match((int)$ped['status']) {
                                     0 => '<span class="badge bg-warning text-dark"><i class="fas fa-clock me-1"></i> Pendiente</span>',
                                     1 => '<span class="badge bg-info text-dark"><i class="fas fa-truck me-1"></i> Por Entregar</span>',
@@ -116,6 +117,12 @@ $pedidos = $stmt_pedidos->fetchAll();
                                 <td>
                                     <?php echo $estado_badge; ?>
                                 </td>
+                                <td class="text-end pe-4">
+                                    <!-- AQUÍ ESTÁ EL CAMBIO: Enlace al detalle -->
+                                    <a href="detalle_pedido.php?id=<?php echo $ped['id']; ?>" class="btn btn-sm btn-light text-primary rounded-circle" title="Ver Detalles y Calificar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -124,7 +131,6 @@ $pedidos = $stmt_pedidos->fetchAll();
             </div>
         </div>
     </div>
-
 </div>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
