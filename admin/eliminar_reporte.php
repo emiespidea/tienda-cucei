@@ -11,7 +11,6 @@ if (!is_logged_in() || $_SESSION['user_rol'] !== 'admin') {
 // Obtener ID del reporte
 $id = $_GET['id'] ?? null;
 
-// SIEMPRE VOLVER A admin/reportes.php
 $return = 'admin/reportes.php';
 
 if ($id) {

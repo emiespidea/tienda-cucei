@@ -13,7 +13,7 @@ $id_admin = $_SESSION['user_id'];
 // ESTADÍSTICAS DEL ADMIN
 // -----------------------------
 
-// A. Total de usuarios (TU TABLA REAL)
+// A. Total de usuarios
 $stmt = $pdo->query("SELECT COUNT(*) FROM clientes");
 $total_usuarios = $stmt->fetchColumn();
 
@@ -21,13 +21,13 @@ $total_usuarios = $stmt->fetchColumn();
 $stmt = $pdo->query("SELECT COUNT(*) FROM clientes WHERE rol = 'vendedor'");
 $total_vendedores = $stmt->fetchColumn();
 
-// C. Productos publicados (no eliminados)
+// C. Productos publicados
 $stmt = $pdo->query("SELECT COUNT(*) FROM productos WHERE eliminado = 0");
 $total_productos = $stmt->fetchColumn();
 
-// D. Reportes de publicaciones (pendientes)
+// D. Reportes de publicaciones
 $stmt = $pdo->query("SELECT COUNT(*) FROM reportes WHERE estado = 'pendiente'");
-$total_reportes = $stmt->fetchColumn();  // ← CORREGIDO
+$total_reportes = $stmt->fetchColumn(); 
 ?>
 
 <div class="container mb-5">
@@ -90,7 +90,6 @@ $total_reportes = $stmt->fetchColumn();  // ← CORREGIDO
                         <i class="fas fa-flag fa-2x text-danger opacity-25"></i>
                     </div>
 
-                    <!-- CORREGIDO -->
                     <h2 class="fw-bold mb-3"><?php echo $total_reportes; ?></h2>
 
                     <a href="reportes.php" class="btn btn-sm btn-outline-danger rounded-pill w-100">Revisar Reportes</a>

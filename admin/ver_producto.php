@@ -46,12 +46,10 @@ if (!$producto) {
 
         <p><strong>Descripción:</strong><br><?= nl2br(e($producto['descripcion'])); ?></p>
 
-        <!-- Mostrar imagen del producto -->
         <?php if (!empty($producto['archivo'])): ?>
             <p class="mt-3"><strong>Imagen:</strong></p>
 
             <?php 
-                // Ruta correcta hacia uploads/productos/
                 $ruta = "../uploads/productos/" . $producto['archivo'];
             ?>
 

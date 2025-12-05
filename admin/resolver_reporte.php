@@ -9,7 +9,7 @@ if (!is_logged_in() || $_SESSION['user_rol'] !== 'admin') {
 
 $id = $_GET['id'] ?? null;
 
-// Redirección correcta SIEMPRE
+
 $return = 'admin/reportes.php';
 
 if ($id) {

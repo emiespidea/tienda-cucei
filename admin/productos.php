@@ -6,7 +6,7 @@ if (!is_logged_in() || $_SESSION['user_rol'] !== 'admin') {
     redirect('../index.php');
 }
 
-// Consulta correcta según tu DB real
+// Consulta correcta según DB real
 $stmt = $pdo->query("
     SELECT 
         p.id,

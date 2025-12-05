@@ -16,6 +16,5 @@ if ($id) {
     $stmt->execute([$id]);
 }
 
-// REDIRECCIÓN CORRECTA SIN BASE_URL
 header("Location: usuarios.php");
 exit;

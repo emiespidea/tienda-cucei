@@ -9,7 +9,7 @@ if (!is_logged_in() || $_SESSION['user_rol'] !== 'admin') {
 }
 
 $id = $_GET['id'] ?? null;
-$from = $_GET['from'] ?? 'productos'; // origen
+$from = $_GET['from'] ?? 'productos'; 
 $id_v = $_GET['id_v'] ?? null;
 
 if ($id) {
@@ -17,7 +17,6 @@ if ($id) {
     $stmt->execute([$id]);
 }
 
-// Redirecciones según origen
 if ($from === 'vendedor' && $id_v) {
     header("Location: vendedor_productos.php?id=$id_v");
     exit;
